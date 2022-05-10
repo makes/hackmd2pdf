@@ -1,0 +1,148 @@
+\documentclass[a4paper,fontsize=12pt,parskip=full*]{scrartcl}
+\usepackage[margin=0.4cm
+  %,showframe% <- only to show the page layout
+]{geometry}
+
+% MAIN FONT
+
+% SERIF
+%\usepackage{libertine}
+
+%\usepackage{heuristica}
+%\usepackage[heuristica,vvarbb,bigdelims]{newtxmath}
+%\usepackage[T1]{fontenc}
+%\renewcommand*\oldstylenums[1]{\textosf{#1}}
+
+\usepackage[bitstream-charter]{mathdesign}
+
+% SANS
+%\usepackage[defaultsans]{droidsans}
+%\usepackage[defaultsans,oldstyle,scale=0.95]{opensans}
+%\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans-serif
+
+%\usepackage[book]{FiraSans} %% option 'sfdefault' activates Fira Sans as the default text font
+%\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
+
+\usepackage{nimbussans}
+%\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+
+% MONOSPACE
+%\usepackage[scale=.85]{sourcecodepro}
+
+\usepackage[defaultmono,scale=.8]{droidsansmono}
+%\renewcommand*\familydefault{\ttdefault} %% Only if the base font of the document is to be typewriter style
+
+\usepackage[T1]{fontenc}
+
+
+\usepackage[svgnames,hyperref]{xcolor}
+\usepackage{url}
+\usepackage{graphicx,float}
+
+\usepackage{fullpage}
+
+\usepackage[%
+unicode=true,
+hyperindex=true,
+bookmarks=true,
+colorlinks=true, % change to false for final
+pdfborder=0,
+allcolors=DarkBlue,
+% plainpages=false,
+pdfpagelabels,
+hyperfootnotes=true]{hyperref}
+
+\usepackage{amsmath}
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+% IMAGE PLACEMENT
+\setkeys{Gin}[h]{width=\textwidth,height=\textheight,keepaspectratio}
+\floatplacement{figure}{H}
+
+% TITLE AND HEADING FORMATTING
+\setkomafont{title}{\sffamily\Huge\bfseries}
+\setkomafont{subtitle}{\sffamily\large\bfseries}
+\setkomafont{author}{\sffamily\large}
+\setkomafont{date}{\sffamily\large}
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\sffamily\huge\bfseries\color{black}}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries\color{black}}
+  {}{0em}{} % {\thesection}{1em}{}       % use this instead for numbered sections
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries}
+  {}{0em}{} % {\thesubsection}{1em}{}    % use this instead for numbered subsections
+\titleformat{\subsubsection}
+  {\normalfont\sffamily\normalsize\bfseries}
+  {}{0em}{} % {\thesubsubsection}{1em}{} % use this instead for numbered subsubsections
+\titleformat{\paragraph}[runin]
+  {\normalfont\normalsize\bfseries}
+  {\theparagraph}{1em}{}
+\titleformat{\subparagraph}[runin]
+  {\normalfont\normalsize\bfseries}
+  {\thesubparagraph}{1em}{}
+
+% ABSTRACT FORMATTING
+\renewenvironment{abstract}{%
+\footnotesize\begin{minipage}{0.85\textwidth}
+\rule{\textwidth}{1pt}}
+{\par\noindent\rule{\textwidth}{1pt}\end{minipage}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% some of these handy pandoc->latex tricks from                                              %
+% https://github.com/craigbass76/pandoc_latex_template/blob/master/templates/fossfolks.latex %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\tightlist{}
+
+\usepackage{longtable}
+\def\toprule{\hline}
+\def\midrule{\hline}
+\def\bottomrule{\hline}
+
+$for(author/first)$
+$if(it.name)$
+\author{$it.name$$if(it.affiliation)$\\$it.affiliation$$endif$
+$else$
+\author{$it$
+$endif$
+$endfor$
+$for(author/rest)$
+$if(it.name)$
+\and $it.name$$if(it.affiliation)$\\$it.affiliation$$endif$
+$else$
+\author{$it$}
+$endif$
+$endfor$
+$if(author)$}$endif$
+
+\date{$if(date)$$date$$else$\today$endif$}
+
+$if(title)$
+\title{$title$}
+$endif$
+
+$if(subtitle)$\subtitle{$subtitle$}$endif$
+
+\begin{document}
+
+$if(title)$
+\maketitle
+$endif$
+
+$if(abstract)$
+\begin{center}
+\begin{abstract}
+$abstract$
+\end{abstract}
+\end{center}
+$endif$
+
+$body$
+
+\end{document}
